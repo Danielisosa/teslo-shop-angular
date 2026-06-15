@@ -1,5 +1,13 @@
-<div class="overflow-x-auto">
-  <table class="table">
+<div class="card product-table">
+  <div class="flex items-center justify-between mb-4">
+    <h3 class="text-lg font-bold">Productos</h3>
+    <div class="flex items-center gap-2">
+      <!-- <button class="ds-btn ds-btn--primary ds-btn--xs">Nuevo producto</button> -->
+    </div>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="table w-full">
     <!-- head -->
     <thead>
       <tr>
@@ -17,7 +25,7 @@
     <tbody>
       <!-- row 1 -->
        @for (product of products(); track product.id) {
-        <tr>
+        <tr class="hover:bg-white/2 transition-colors">
           <th>
             <label>
               <input type="checkbox" class="checkbox" />
@@ -35,7 +43,7 @@
               <div>
                 <a
                 [routerLink]="['/admin/products', product.id]"
-                 class="font-bold hover:text-accent transition-colors duration-500">{{ product.title }}</a>
+                 class="product-title transition-colors duration-200">{{ product.title }}</a>
                 <div class="text-sm opacity-50">{{ product.sizes.join(', ') }}</div>
               </div>
             </div>
@@ -55,7 +63,7 @@
             }
           </td>
           <th>
-           <a [routerLink]="['/admin/products', product.id]" class="btn btn-ghost text-accent btn-xs">Detalles</a>
+           <a [routerLink]="['/admin/products', product.id]" class="ds-btn ds-btn--ghost ds-btn--xs text-accent">Detalles</a>
           </th>
         </tr>
 

@@ -3,6 +3,7 @@ import { AuthResponse } from './../interfaces/auth-response.interface';
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 import { User } from '@auth/interfaces/user.interface';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -18,6 +19,7 @@ export class AuthService {
   private _token =signal<string |null>(localStorage.getItem('token'));
 
   private http=inject(HttpClient);
+   router= inject(Router);
 
   checkStatusResource= rxResource({
     loader: ()=> this.checkStatus(),
@@ -83,6 +85,11 @@ export class AuthService {
     this._authStatus.set('not-authenticated')
 
     localStorage.removeItem('token');
+
+    this.router.navigateByUrl('/', { replaceUrl: true }).catch(()=>{
+    
+      window.location.href = '/';
+    });
   }
 
   private handleAuthSuccess({token, user}:AuthResponse){

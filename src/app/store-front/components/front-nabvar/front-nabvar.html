@@ -1,73 +1,51 @@
-<div class="navbar bg-base-100 shadow-sm">
-  <div class="navbar-start">
-    <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+<nav class="ds-header bg-base-100 shadow-sm" role="navigation" aria-label="Main navigation">
+  <div class="flex items-center justify-between container mx-auto px-4 py-2">
+    <div class="flex items-center gap-4">
+      <button aria-label="Toggle menu" class="ds-btn ds-btn--ghost lg:hidden">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
-      </div>
-      <ul
-        tabindex="-1"
-        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li>
-          <a routerLink="/gender/men" class="btn btn-ghost" routerLinkActive="text-secondary">
-            Hombres
-          </a>
-        </li>
-        <li>
-          <a routerLink="/gender/women" class="btn btn-ghost" routerLinkActive="text-secondary">
-            Mujeres
-          </a>
-        </li>
-         <li>
-          <a routerLink="/gender/kid" class="btn btn-ghost" routerLinkActive="text-secondary">
-            Niños
-          </a>
-        </li>
+      </button>
+
+      <a routerLink="/" aria-label="Ir al inicio de DashStore" class="ds-logo text-xl font-montserrat font-bold">
+        <span class="logo-mark" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true" focusable="false">
+            <path fill="white" d="M7 7V6a5 5 0 0 1 10 0v1h1a1 1 0 0 1 1 1v10a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8a1 1 0 0 1 1-1h1zM9 7a3 3 0 0 1 6 0v1H9V7z"/>
+          </svg>
+        </span>
+        <span class="logo-text">
+          <span class="brand">DashStore</span>
+        </span>
+      </a>
+
+      <ul class="hidden lg:flex gap-2 items-center">
+        <li><a routerLink="/gender/men" class="ds-btn ds-btn--ghost" routerLinkActive="text-primary">Hombres</a></li>
+        <li><a routerLink="/gender/women" class="ds-btn ds-btn--ghost" routerLinkActive="text-primary">Mujeres</a></li>
+        <li><a routerLink="/gender/kid" class="ds-btn ds-btn--ghost" routerLinkActive="text-primary">Niños</a></li>
       </ul>
     </div>
-    <a routerLink="/"
-    class="btn btn-ghost text-xl font-montserrat">
-    Teslo
-    <span class="text-secondary"> | Shop </span> </a>
+
+    <div class="flex items-center gap-4">
+      <form role="search" aria-label="Buscar productos" class="hidden md:block">
+        <label for="nav-search" class="sr-only">Buscar productos</label>
+        <input id="nav-search" type="search" placeholder="Buscar..." class="input input-bordered input-sm bg-transparent text-sm text-muted" />
+      </form>
+
+      <div class="flex items-center gap-2">
+        @if(authService.isAdmin()) {
+          <a routerLink="/admin" class="ds-btn ds-btn--ghost text-accent">Panel</a>
+        }
+
+        @if(authService.authStatus()==='authenticated'){
+          <button class="ds-btn ds-btn--ghost">{{ authService.user()?.fullName }}</button>
+          <button class="btn btn-sm btn-error" (click)="authService.logout()">Salir</button>
+        }
+
+          @else if (authService.authStatus()==='not-authenticated') {
+            <button type="button" (click)="goToLogin()" class="ds-btn ds-btn--secondary">Login</button>
+          }
+        @else {
+          <a class="ds-btn ds-btn--ghost">...</a>
+        }
+      </div>
+    </div>
   </div>
-  <div class="navbar-center hidden lg:flex">
-    <ul class="menu menu-horizontal px-1">
-       <li>
-          <a routerLink="/gender/men" class="btn btn-ghost" routerLinkActive="text-secondary">
-            Hombres
-          </a>
-        </li>
-        <li>
-          <a routerLink="/gender/women" class="btn btn-ghost" routerLinkActive="text-secondary">
-            Mujeres
-          </a>
-        </li>
-         <li>
-          <a routerLink="/gender/kid" class="btn btn-ghost" routerLinkActive="text-secondary">
-            Niños
-          </a>
-        </li>
-    </ul>
-  </div>
-  <div class="navbar-end gap-4">
-    @if(authService.isAdmin()) {
-       <a routerLink="/admin" class="btn text-accent">Admin Panel</a>
-
-    }
-
-
-    @if(authService.authStatus()==='authenticated'){
-      <button class="btn btn-ghost">
-        {{ authService.user()?.fullName }}
-      </button>
-      <button class="btn btn-sm btn-error" (click)="authService.logout()">Salir</button>
-    }
-
-    @else if (authService.authStatus()==='not-authenticated') {
-      <a routerLink="/auth/login" class="btn btn-secondary">Login</a>
-    }
-
-    @else {
-      <a class="btn btn-ghost">...</a>
-    }
-  </div>
-</div>
+</nav>

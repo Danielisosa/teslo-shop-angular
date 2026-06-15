@@ -1,96 +1,104 @@
-<h1 class="text-2xl font-bold">{{ product().title }}</h1>
-<div class="divider"></div>
+@if (product()) {
+  <h1 class="text-2xl font-bold ds-title-gradient">{{ product()?.title }}</h1>
+  <div class="divider"></div>
 
-<form [formGroup]="productForm" class="grid grid-cols-1 sm:grid-cols-2 gap-4" (ngSubmit)="onSubmit()">
+  <form [formGroup]="productForm" class="grid grid-cols-1 sm:grid-cols-2 gap-4" (ngSubmit)="onSubmit()">
 
   <!-- Datos generales -->
-  <div class="flex flex-col gap-2">
-    <h2 class="text-2xl font-bold h-12">Datos generales</h2>
-    <input
-      type="text"
-      placeholder="Título"
-      class="input input-bordered w-full"
-      formControlName="title"
-      [class.border-red-500]="productForm.get('title')?.errors ?? false"
-    />
-   <form-error-label [control]="productForm.get('title')!"/>
+  <div class="card flex flex-col gap-2">
+    <h2 class="text-2xl font-bold h-12 ds-title-gradient">Datos generales</h2>
+    <ds-field label="Título" [control]="productForm.get('title')" [required]="true">
+      <input
+        type="text"
+        placeholder="Título"
+        class="ds-input w-full"
+        formControlName="title"
+        [class.ds-input--error]="productForm.get('title')?.errors && productForm.get('title')?.touched"
+      />
+    </ds-field>
 
-    <input type="text" placeholder="Slug" class="input input-bordered w-full" formControlName="slug"    [class.border-red-500]="productForm.get('slug')?.errors ?? false"
-    />
-   <form-error-label [control]="productForm.get('slug')!"/>
+    <ds-field label="Slug" [control]="productForm.get('slug')" [required]="true">
+      <input
+        type="text"
+        placeholder="Slug"
+        class="ds-input w-full"
+        formControlName="slug"
+        [class.ds-input--error]="productForm.get('slug')?.errors && productForm.get('slug')?.touched"
+      />
+    </ds-field>
 
-    <textarea
-      class="textarea textarea-bordered"
-      placeholder="Descripción"
-      rows="6"
-       formControlName="description"
-        [class.border-red-500]="productForm.get('description')?.errors ?? false"
-    ></textarea>
-
-   <form-error-label [control]="productForm.get('description')!"/>
+    <ds-field label="Descripción" [control]="productForm.get('description')" [required]="true">
+      <textarea
+        class="ds-textarea w-full"
+        placeholder="Descripción"
+        rows="6"
+        formControlName="description"
+        [class.ds-input--error]="productForm.get('description')?.errors && productForm.get('description')?.touched"
+      ></textarea>
+    </ds-field>
 
     <h2 class="text-lg font-bold">Datos de venta</h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
       <div>
-        <input
-          type="number"
-          placeholder="Precio"
-          class="input input-bordered w-full"
-          formControlName="price"[class.border-red-500]="productForm.get('price')?.errors ?? false"
-        />
-        <form-error-label [control]="productForm.get('price')!"/>
+        <ds-field label="Precio" [control]="productForm.get('price')" [required]="true">
+          <input
+            type="number"
+            placeholder="Precio"
+            class="ds-input w-full"
+            formControlName="price"
+            [class.ds-input--error]="productForm.get('price')?.errors && productForm.get('price')?.touched"
+          />
+        </ds-field>
       </div>
 
       <div>
-        <input
-          type="number"
-          placeholder="Inventario"
-          class="input input-bordered w-full"
-          formControlName="stock"[class.border-red-500]="productForm.get('stock')?.errors ?? false"
-        />
-        <form-error-label [control]="productForm.get('stock')!"/>
+        <ds-field label="Inventario" [control]="productForm.get('stock')" [required]="true">
+          <input
+            type="number"
+            placeholder="Inventario"
+            class="ds-input w-full"
+            formControlName="stock"
+            [class.ds-input--error]="productForm.get('stock')?.errors && productForm.get('stock')?.touched"
+          />
+        </ds-field>
       </div>
     </div>
 
 
     <!-- tags -->
-    <input type="text" placeholder="Tags" class="input input-bordered w-full" formControlName="tags"[class.border-red-500]="productForm.get('tags')?.errors ?? false"
-    />
-   <form-error-label [control]="productForm.get('tags')!"/>
+    <ds-field label="Tags" [control]="productForm.get('tags')">
+      <input
+        type="text"
+        placeholder="Tags"
+        class="ds-input w-full"
+        formControlName="tags"
+        [class.ds-input--error]="productForm.get('tags')?.errors && productForm.get('tags')?.touched"
+      />
+    </ds-field>
 
     <!-- Botones para el género -->
     <div class="grid grid-cols-4 gap-2">
-      <!-- <button class="btn btn-sm btn-outline">Masculino</button> -->
-      <button type="button" class="btn btn-sm " [class.btn-info]="productForm.get('gender')?.value === 'men'" (click)="productForm.patchValue({gender: 'men'})">Masculino</button>
-      <button type="button" class="btn btn-sm " [class.btn-primary]="productForm.get('gender')?.value === 'women'" (click)="productForm.patchValue({gender: 'women'})">Femenino</button>
-        <button type="button" class="btn btn-sm " [class.btn-warning]="productForm.get('gender')?.value === 'kid'" (click)="productForm.patchValue({gender: 'kid'})">Kid</button>
-      <button type="button" class="btn btn-sm " [class.btn-secondary]="productForm.get('gender')?.value === 'unisex'" (click)="productForm.patchValue({gender: 'unisex'})">Unisex</button>
+      <button type="button" class="ds-btn ds-btn--ghost ds-btn--xs" [class.ds-btn--primary]="productForm.get('gender')?.value === 'men'" (click)="productForm.patchValue({gender: 'men'})">Masculino</button>
+      <button type="button" class="ds-btn ds-btn--ghost ds-btn--xs" [class.ds-btn--primary]="productForm.get('gender')?.value === 'women'" (click)="productForm.patchValue({gender: 'women'})">Femenino</button>
+      <button type="button" class="ds-btn ds-btn--ghost ds-btn--xs" [class.ds-btn--primary]="productForm.get('gender')?.value === 'kid'" (click)="productForm.patchValue({gender: 'kid'})">Kid</button>
+      <button type="button" class="ds-btn ds-btn--ghost ds-btn--xs" [class.ds-btn--primary]="productForm.get('gender')?.value === 'unisex'" (click)="productForm.patchValue({gender: 'unisex'})">Unisex</button>
     </div>
-
-    <!-- <select class="select select-bordered w-full">
-      <option value="male">Masculino</option>
-      <option value="female">Femenino</option>
-      <option value="unisex">Unisex</option>
-    </select> -->
 
     <!-- Sizes -->
     <div class="grid grid-cols-6 gap-2">
       @for (size of sizes; track size) {
-      <button class="btn btn-sm btn-outline" type="button" (click)="onSizeCliked(size)"
-      [class.btn-info]="productForm.value.sizes?.includes(size)" >{{ size }}</button>
+      <button class="ds-btn ds-btn--ghost ds-btn--xs" type="button" (click)="onSizeCliked(size)"
+      [class.ds-btn--primary]="productForm.get('sizes')?.value?.includes(size)" >{{ size }}</button>
       }
     </div>
   </div>
 
   <!-- Imágenes -->
-  <div class="flex flex-col gap-2">
-    <div class="flex justify-end h-12">
-      <button class="btn btn-secondary" type="submit">
-        <!-- <span class="loading loading-spinner loading-sm"></span> -->
-
-        Guardar
-      </button>
+  <div class="card flex flex-col gap-2">
+    <div class="flex justify-end h-12 gap-2">
+      <button type="button" class="ds-btn ds-btn--secondary" (click)="onCancel()">Cancelar</button>
+      <button class="ds-btn ds-btn--primary" type="submit">Guardar</button>
     </div>
 
     <product-carousel [images]="imagesToCarousel()" />
@@ -101,12 +109,13 @@
       @for (image of tempImages(); track $index) {
         <div class="w-full relative">
           <img [src]="image" alt="Imagen temporal" class="w-full h-full object-cover rounded-lg">
-          <!-- <button type="button" class="btn btn-sm btn-error absolute top-2 right-2" (click)="tempImages.set(tempImages().filter(img => img !== image))">X</button> -->
+       
         </div>
       }
     </div>
   </div>
-</form>
+  </form>
+}
 
 @if(wasSaved()){
   <div class="alert alert-success fixed bottom-4 right-4 w-80 animate-fadeIn ">

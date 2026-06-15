@@ -1,3 +1,8 @@
 :host {
   display: block;
 }
+
+/* Ensure entrance animation runs on mount even if class didn't trigger */
+:host(.animate-fadeUp), :host {
+  animation: fadeUp 420ms cubic-bezier(.2,.9,.2,1) both;
+}

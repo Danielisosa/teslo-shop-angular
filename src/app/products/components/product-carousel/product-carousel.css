@@ -5,5 +5,65 @@
 .swiper{
   width: 100%;
   height: 500px;
-  
+  position: relative;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.6);
 }
+
+.swiper-wrapper { height: 100%; }
+
+.swiper-slide { display: flex; align-items: center; justify-content: center; }
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 0.75rem;
+  max-width: 100%;
+}
+
+/* Navigation buttons */
+.swiper-button-prev, .swiper-button-next {
+  width: 44px;
+  height: 44px;
+  background: rgba(0,0,0,0.45);
+  border-radius: 9999px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.5);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1rem;
+}
+.swiper-button-next { right: 1rem; left: auto; }
+
+.swiper-button-prev::after, .swiper-button-next::after {
+  font-size: 1.1rem;
+}
+
+/* Pagination bullets */
+.swiper-pagination-bullet {
+  background: rgba(255,255,255,0.22);
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--color-accent);
+  transform: scale(1.25);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .swiper { height: 320px; max-width: 100%; }
+  .swiper-button-prev, .swiper-button-next { width: 36px; height: 36px; }
+}
+
+/* Extra guard: ensure swiper wrapper doesn't cause horizontal scroll */
+.swiper, .swiper-wrapper, .swiper-slide { box-sizing: border-box; max-width: 100%; }

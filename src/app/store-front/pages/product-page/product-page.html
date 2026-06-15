@@ -6,17 +6,27 @@
 }
 
 @if (productResource.hasValue()) {
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-    <product-carousel [images]="productResource.value()?.images ?? []"/>
-
+  <div class="product-page">
     <div>
-      <h2 class="text-2xl font-bold font-montserrat text-accent"> {{ productResource.value().title}}</h2>
-
-    <div class="divider"> </div>
-      <p>
-        {{ productResource.value().description }}
-      </p>
+      <product-carousel [images]="productResource.value().images"/>
     </div>
 
+    <aside class="product-info">
+      <h2 class="product-hero-title">{{ productResource.value().title }}</h2>
+      <div class="product-price">{{ productResource.value().price | currency:'USD':'symbol':'1.2-2' }}</div>
+      <div class="divider"></div>
+      <p class="product-description">{{ productResource.value().description }}</p>
+
+      <div class="product-actions">
+        <button class="ds-btn ds-btn--accent">Comprar</button>
+        <button class="ds-btn ds-btn--ghost">Agregar al carrito</button>
+      </div>
+
+      <div class="tag-list">
+        @for (tag of productResource.value().tags ; track tag) {
+          <span class="tag">{{ tag }}</span>
+        }
+      </div>
+    </aside>
   </div>
 }

@@ -12,6 +12,6 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class ProductTable {
 
-  products =input.required<Product[]>();
+  products =input<Product[]>();
 
 }

@@ -1,16 +1,18 @@
 
-import { SlicePipe } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { SlicePipe, CommonModule } from '@angular/common';
+import { Component, input, computed } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { Product } from '@products/interfaces/product.interface';
 import { ProductImagePipe } from "../../pipes/product-image.pipe";
 
 @Component({
+  standalone: true,
   selector: 'product-card',
-  imports: [RouterLink, SlicePipe, ProductImagePipe],
+  imports: [CommonModule, RouterLink, SlicePipe, ProductImagePipe],
   templateUrl: './product-card.html',
-  styleUrl: './product-card.css',
+  styleUrls: ['./product-card.css'],
 })
 export class ProductCard {
-  product = input.required<Product>()
+  product = input<Product>();
+  cardProduct = computed(() => this.product());
  }

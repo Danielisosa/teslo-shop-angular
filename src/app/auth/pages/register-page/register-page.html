@@ -11,11 +11,13 @@
       </svg>
       <input
       type="text"
-      class="grow"
+      class="grow ds-input"
+      [class.ds-input--error]="registerForm.get('fullName')?.errors && registerForm.get('fullName')?.touched"
       placeholder="Nombre de usuario"
       formControlName="fullName"
        />
     </label>
+    <form-error-label [control]="registerForm.get('fullName')!"/>
   <label class="input input-bordered flex items-center gap-2">
       <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <g
@@ -31,11 +33,13 @@
       </svg>
       <input
       type="text"
-      class="grow"
+      class="grow ds-input"
+      [class.ds-input--error]="registerForm.get('email')?.errors && registerForm.get('email')?.touched"
       placeholder="Correo Electrónico"
       formControlName="email"
        />
     </label>
+    <form-error-label [control]="registerForm.get('email')!"/>
 
  <label class="input validator">
   <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -54,17 +58,19 @@
   </svg>
   <input
     type="password"
-    class="grow"
+    class="grow ds-input"
+    [class.ds-input--error]="registerForm.get('password')?.errors && registerForm.get('password')?.touched"
     placeholder="Contraseña"
     formControlName="password"
 
   />
 </label>
-<button class="btn btn-secondary" type="submit">Registrar cuenta</button>
+<form-error-label [control]="registerForm.get('password')!"/>
+<button class="ds-btn ds-btn--accent" type="submit">Registrar cuenta</button>
 
 
-<p class="text-slate-700">Ya tienes cuenta?
-  <a routerLink="/auth/login" class="text-secondary">Inicia sesión aqui</a>
+<p class="text-slate-400">Ya tienes cuenta?
+  <a routerLink="/auth/login" class="ds-title-gradient">Inicia sesión aqui</a>
 </p>
 
 </form>

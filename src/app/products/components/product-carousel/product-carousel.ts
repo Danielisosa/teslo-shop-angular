@@ -2,20 +2,20 @@ import { AfterViewInit, Component, ElementRef, input, OnChanges, SimpleChanges, 
 
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules'
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+// import 'swiper/css';
+// import 'swiper/css/navigation';
+// import 'swiper/css/pagination';
 import { ProductImagePipe } from "../../pipes/product-image.pipe";
 
 @Component({
   selector: 'product-carousel',
   imports: [ProductImagePipe],
   templateUrl: './product-carousel.html',
-  styleUrl: './product-carousel.css',
+  styleUrls: ['./product-carousel.css'],
 })
 export class ProductCarousel implements AfterViewInit, OnChanges {
-  images = input.required<string[]>();
-  swiperDiv=viewChild.required<ElementRef>('swiperDiv')
+  images = input<string[]>();
+  swiperDiv=viewChild<ElementRef>('swiperDiv')
 
   swiper: Swiper | undefined = undefined;
 
@@ -29,7 +29,7 @@ export class ProductCarousel implements AfterViewInit, OnChanges {
     this.swiper.destroy(true, true)
 
     const paginationEl: HTMLElement =
-    this.swiperDiv().nativeElement?.querySelector('.swiper-pagination');
+    this.swiperDiv()?.nativeElement?.querySelector('.swiper-pagination');
     if(paginationEl){
       paginationEl.innerHTML= '';
     }
@@ -45,7 +45,7 @@ export class ProductCarousel implements AfterViewInit, OnChanges {
 
   }
   swiperInit(){
-    const element =this.swiperDiv().nativeElement;
+    const element =this.swiperDiv()?.nativeElement;
     if(!element) return;
 
     this.swiper = new Swiper(element, {

@@ -10,23 +10,23 @@ import { RouterLink } from '@angular/router';
   selector: 'app-products-admin-page',
   imports: [ProductTable, Pagination, RouterLink],
   templateUrl: './products-admin-page.html',
-  styleUrl: './products-admin-page.css',
+  styleUrls: ['./products-admin-page.css'],
 })
 export class ProductsAdminPage {
   productsService = inject(ProductsService);
   paginationService = inject(PaginationService)
 
-  productPerPge = signal(10);
+  productPerPage = signal(10);
 
   productsResource= rxResource({
     request: () =>({
        page: this.paginationService.currentPage()-1,
-       limit: this.productPerPge()
+       limit: this.productPerPage()
       }),
     loader: ({ request })=>
       {
       return this.productsService.getProducts({
-        offset: request.page*9,
+        offset: request.page * request.limit,
         limit: request.limit
       });
     }
