@@ -1,59 +1,39 @@
-# DashStore
+# 🛒 DashStore - Frontend (Angular 19)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+¡Bienvenido! Este es el frontend moderno y responsivo para la plataforma de gestión y tienda virtual de una tienda de ropa. El proyecto fue migrado y construido desde cero utilizando las últimas características de **Angular 19**.
 
-## Development server
+## 🚀 Características Principales
+* **Arquitectura Moderna:** Uso de *Signals* para una gestión de estado reactiva y eficiente.
+* **Control Flow Nativo:** Implementación de `@if`, `@for` y `@switch` para plantillas más limpias.
+* **Componentes Standalone:** Arquitectura modular sin módulos tradicionales (`NgModule`).
+* **Diseño Profesional:** Interfaz de usuario pulida, moderna y completamente adaptada a dispositivos móviles.
 
-To start a local development server, run:
+## 🛠️ Tecnologías Utilizadas
+* **Framework:** Angular 19 (TypeScript)
+* **Estilos:** Tailwind,  CSS
+* **Herramientas:** VS Code, Git / GitHub
+
+## 📦 Instalación y Configuración
+
+1. Clonar el repositorio:
+   ```bash
+   git clone [https://github.com/tu-usuario/tu-repositorio.git](https://github.com/Danielisosa/teslo-shop-angular.git)
+
+2. instalar dependencias
+```bash
+npm install
+```
+
+3. Levantar el servidor de desarrollo:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Abre http://localhost:4200/ en tu navegador.
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🌐Despliegue
+El proyecto se encuentra desplegado y en vivo en el siguiente enlace:
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+[![Deploy con Netlify](https://img.shields.io/badge/Netlify-Live_Demo-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://6a303e51191ceb3d969954ae--dashstore2.netlify.app/)
